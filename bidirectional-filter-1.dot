@@ -1,0 +1,19 @@
+digraph bidirectionalFilter1 {
+  rankdir=LR
+  browser [label="browser"]
+  netcat_in [label="netcat"]
+  browser -> netcat_in
+  { rank=same
+    sed1 [label="sed"];
+    sed2 [label="sed"];
+  }
+  netcat_in -> sed1
+  netcat_out [label="netcat"]
+  sed1 -> netcat_out
+  server [label="server"]
+  netcat_out -> server
+  server -> netcat_out
+  netcat_out -> sed2
+  sed2 -> netcat_in
+  netcat_in -> browser
+}

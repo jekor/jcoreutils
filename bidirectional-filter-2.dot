@@ -1,0 +1,28 @@
+digraph bidirectionalFilter2 {
+  rankdir=LR
+  netcat_in [label="netcat"]
+  xtee [label="xtee"]
+  netcat_in -> xtee
+  xtee -> netcat_in
+  { rank=same
+    sed1 [label="sed"];
+    sed2 [label="sed"];
+  }
+  xtee -> fifo1
+  { rank=same
+    fifo1 [label="fifo1"]
+    fifo4 [label="fifo4"]
+  }
+  { rank=same
+    fifo2 [label="fifo2"]
+    fifo3 [label="fifo3"]
+  }
+  fifo1 -> sed1
+  sed1 -> fifo2
+  netcat_out [label="netcat"]
+  fifo2 -> netcat_out
+  netcat_out -> fifo3
+  fifo3 -> sed2
+  sed2 -> fifo4
+  fifo4 -> xtee
+}

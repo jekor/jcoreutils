@@ -1,0 +1,51 @@
+xtee 1.0
+
+Description
+===========
+xtee stands for "cross-tee"/"expanded tee". You can use it to build complex
+pipes.
+
+I welcome your comments and suggestions at <jekor@jekor.com>.
+
+You can find the latest version of this software at <http://jekor.com/xtee/>.
+
+Requirements
+============
+If compiling from source:
+* GHC     (>= 6.8.2)
+* lhs2TeX (>= 1.11)
+* GNU Make
+
+Usage
+=====
+xtee [option...] -i input-file -o output-file
+
+  -h       --help         show help
+  -v       --version      show version
+  -i FILE  --input=FILE   input file
+  -o FILE  --output=FILE  output file
+
+See the documentation for more details.
+
+Building
+========
+
+$ make
+$ make test
+
+To rebuild the documentation:
+
+$ make doc
+
+Manifest
+========
+xtee.lhs   - the literate Haskell source to the program
+*.dot      - graphs used in the documentation
+Makefile   - a GNU makefile for building the components
+COPYING    - the text to the GNU GPLv3
+
+Modifications/Source
+====================
+You can checkout the latest source at https://github.com/jekor/xtee
+
+See COPYING for license details.

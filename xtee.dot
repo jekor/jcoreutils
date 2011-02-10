@@ -1,0 +1,14 @@
+digraph simple {
+  rankdir=LR
+  { rank=same
+    stdin [label="stdin"]
+    stdout [label="stdout"]
+  }
+  { rank=same
+    infile [label="infile"]
+    outfile [label="outfile"]
+  }
+  xtee [label="xtee"]
+  stdin -> xtee -> outfile
+  infile -> xtee -> stdout
+}
