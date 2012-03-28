@@ -1,35 +1,29 @@
-PROGRAM = xtee
-DIST := $(PROGRAM)-$(shell ./$(PROGRAM) --version | cut -d ' ' -f 3)
+BIN=xtee
+DIST=dist/build/$(BIN)/$(BIN)
 
-all : $(PROGRAM)
+all : $(BIN)
 
-$(PROGRAM) : $(PROGRAM).lhs
-	runhaskell Setup.lhs configure
-	runhaskell Setup.lhs build
+doc : $(BIN).pdf
 
-doc : $(PROGRAM).pdf
+install : $(DIST)
+	cabal install
 
-$(PROGRAM).pdf : $(PROGRAM).tex
+$(BIN) : $(DIST)
+	cp $< $@
+
+dist/setup-config : $(BIN).cabal
+	cabal configure
+
+$(DIST) : dist/setup-config $(BIN).lhs
+	cabal build
+	@touch $@ # cabal doesn't always update the build (if it doesn't need to)
+
+$(BIN).pdf : $(BIN).tex
 	pdflatex $<
 
-$(PROGRAM).tex : $(PROGRAM).lhs
-	lhs2TeX $(PROGRAM).lhs > $@
+$(BIN).tex : $(BIN).lhs
+	lhs2TeX $< > $@
 
 clean :
 	cabal clean
-	rm -f $(PROGRAM).{aux,log,out,ptb,tex}
-
-dist :
-	darcs dist
-
-sloc : $(PROGRAM).lhs
-	lhs2TeX --code $< | grep --invert-match '^ *$$' | wc --lines
-
-# dist:
-# #	darcs dist would be nice, but we want to add xtee.pdf
-# 	mkdir $(DIST)
-# 	for f in `darcs query manifest`; do cp $$f $(DIST)/; done
-# #       append the documentation
-# 	cp xtee.pdf $(DIST)/
-# 	tar czvf $(DIST).tar.gz $(DIST)/
-# 	rm -rf $(DIST)/
+	rm -f $(BIN).{aux,log,out,ptb,tex}
