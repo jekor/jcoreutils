@@ -6,7 +6,7 @@ import System.Environment (getArgs)
 import System.IO (hPutStrLn, stderr, isEOF)
 import Text.Parsec.Char (char, digit, string)
 import Text.Parsec.Combinator (choice, sepBy1, many1, eof, option)
-import Text.Parsec.Prim (parse)
+import Text.Parsec.Prim (parse, try)
 import Text.Parsec.String (Parser)
 
 import Prelude hiding (getLine, putStrLn)
@@ -20,7 +20,7 @@ main = do
     [delimiter, rangeString] -> case parse (sepBy1 range (char ',') <* eof) "" rangeString of
                                   Left err     -> hPutStrLn stderr $ "invalid range: " ++ show err
                                   Right ranges -> chopLines (T.pack delimiter) ranges
-    _ -> hPutStrLn stderr "chop <delimiter> <range(s)>"
+    _ -> hPutStrLn stderr "Usage: chop delimiter range(s)"
 
 chopLines :: T.Text -> [Range] -> IO ()
 chopLines delimiter ranges = do
@@ -47,7 +47,7 @@ mapRange (begin', end') size =
  where pos i = if i < 0 then size + i + 1 else i
 
 range :: Parser Range
-range = choice [continuousRange, singleNum]
+range = choice [try continuousRange, singleNum]
 
 number :: Parser Int
 number = read <$> ((++) <$> option "" (string "-") <*> many1 digit)
