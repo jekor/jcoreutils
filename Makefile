@@ -1,29 +1,29 @@
-BIN=xtee
-DIST=dist/build/$(BIN)/$(BIN)
+bins := xtee map chop
+dists := $(foreach bin,$(bins),dist/build/$(bin)/$(bin))
 
-all : $(BIN)
+all : $(bins)
 
-doc : $(BIN).pdf
+doc : xtee.pdf
 
-install : $(DIST)
+install : $(dists)
 	cabal install
 
-$(BIN) : $(DIST)
-	cp $< $@
+$(bins) : $(dists)
+	cp $^ .
 
-dist/setup-config : $(BIN).cabal
+dist/setup-config : jcoreutils.cabal
 	cabal configure
 
-$(DIST) : dist/setup-config $(BIN).lhs
+$(dists) : dist/setup-config xtee.lhs map.hs chop.hs
 	cabal build
 	@touch $@ # cabal doesn't always update the build (if it doesn't need to)
 
-$(BIN).pdf : $(BIN).tex
+xtee.pdf : xtee.tex
 	pdflatex $<
 
-$(BIN).tex : $(BIN).lhs
+xtee.tex : xtee.lhs
 	lhs2TeX $< > $@
 
 clean :
 	cabal clean
-	rm -f $(BIN).{aux,log,out,ptb,tex}
+	rm -f xtee.{aux,log,out,ptb,tex}
