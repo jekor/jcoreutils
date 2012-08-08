@@ -64,9 +64,9 @@ xtee i o = newEmptyMVar >>= \wait ->
            passThru i (return stdout) >> takeMVar wait
 
 -- We want to copy input from one file handle to another unmodified (in text
--- mode). We can leave the buffering up to the Haskell runtime ({\sc ghc} will
--- use block buffering by default). Since |hGetContents| reads from the handle
--- (|i'|) lazily, this is very simple.
+-- mode). We can leave the buffering up to the Haskell runtime (GHC will use
+-- block buffering by default). Since hGetContents reads from the handle (i')
+-- lazily, this is very simple.
 
 passThru :: IO Handle -> IO Handle -> IO ()
 passThru i o = i >>= \i' -> o >>= \o' ->

@@ -17,3 +17,13 @@ xargs is nice, but it builds commands. I've found no way to shuffle its input in
 Take sections from each line of stdin.
 
 Like cut, but supports indexing fields from the end.
+
+## trans
+
+Search and replace strings from stdin.
+
+Like tr, but using strings instead of characters.
+
+One nice feature of trans is that it doesn't operate on lines, so you can use it in more pipelines without blocking (like sed will).
+
+WARNING: trans is using a naive implementation that will not match strings across read boundaries. There's a chance that some strings will not be translated. Consider this version experimental.

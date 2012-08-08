@@ -1,5 +1,5 @@
 Name:          jcoreutils
-Version:       1.0.0
+Version:       1.1.0
 Cabal-Version: >= 1.2
 License:       GPL
 License-File:  COPYING
@@ -15,7 +15,8 @@ Synopsis:      additions and enhancements to GNU Core Utilities
 Description:   xtee: build complex pipelines
                map: map a command over each line of stdin
                chop: take sections from each line of stdin
-Tested-With:   GHC == 7.0.2
+               trans: translate strings
+Tested-With:   GHC == 7.4.2
 Build-Type:    Simple
 
 Executable xtee
@@ -28,7 +29,7 @@ Executable map
   Build-Depends: base >= 4,
                  bytestring,
                  process
-  GHC-Options:   -Wall -fno-warn-type-defaults -threaded -O2
+  GHC-Options:   -Wall -fno-warn-type-defaults
 
 Executable chop
   Main-Is:       chop.hs
@@ -36,4 +37,12 @@ Executable chop
                  parsec >= 3,
                  text
   Extensions:    OverloadedStrings
-  GHC-Options:   -Wall -fno-warn-type-defaults -threaded -O2
+  GHC-Options:   -Wall -fno-warn-type-defaults
+
+Executable trans
+  Main-Is:       trans.hs
+  Build-Depends: base >= 4,
+                 bytestring,
+                 stringsearch,
+                 unix
+  GHC-Options:   -Wall -fno-warn-type-defaults
