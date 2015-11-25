@@ -1,4 +1,3 @@
-import Control.Applicative ((<$>), (<*>), (<*))
 import Data.List (union)
 import qualified Data.Text as T
 import Data.Text.IO (getLine, putStrLn)

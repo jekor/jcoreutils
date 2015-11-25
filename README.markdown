@@ -27,3 +27,13 @@ Like tr, but using strings instead of characters.
 One nice feature of trans is that it doesn't operate on lines, so you can use it in more pipelines without blocking (like sed will).
 
 WARNING: trans is using a naive implementation that will not match strings across read boundaries. There's a chance that some strings will not be translated. Consider this version experimental.
+
+# Building
+
+I build jcoreutils with [Nix](http://nixos.org/nix/) to try to ensure reproducible builds:
+
+```
+nix-build dev.nix
+```
+
+`default.nix` is for inclusion in a top-level file (such as `all-packages.nix`). `dev.nix` builds jcoreutils with a fixed version of nixpkgs, providing stability at the cost of inflating the nix store.

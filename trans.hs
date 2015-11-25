@@ -1,4 +1,3 @@
-import Control.Applicative ((<$>))
 import Control.Monad (when)
 import Data.ByteString (ByteString, length, hGetSome, hPut, concat)
 import qualified Data.ByteString.Lazy as BL

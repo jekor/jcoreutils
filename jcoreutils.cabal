@@ -1,5 +1,5 @@
 Name:          jcoreutils
-Version:       1.1.0
+Version:       1.1.1
 Cabal-Version: >= 1.2
 License:       MIT
 License-File:  LICENSE
@@ -16,7 +16,7 @@ Description:   xtee: build complex pipelines
                map: map a command over each line of stdin
                chop: take sections from each line of stdin
                trans: translate strings
-Tested-With:   GHC == 7.4.2
+Tested-With:   GHC == 7.10.2
 Build-Type:    Simple
 
 Executable xtee
