@@ -1,9 +1,9 @@
 Name:          jcoreutils
 Version:       1.1.0
 Cabal-Version: >= 1.2
-License:       GPL
-License-File:  COPYING
-Copyright:     2010, 2012 Chris Forno
+License:       MIT
+License-File:  LICENSE
+Copyright:     2010, 2012, 2014, 2015 Chris Forno
 Author:        Chris Forno (jekor)
 Maintainer:    jekor@jekor.com
 Stability:     stable
