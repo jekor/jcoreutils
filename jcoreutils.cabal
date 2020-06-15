@@ -20,19 +20,19 @@ Tested-With:   GHC == 8.6.5
 Build-Type:    Simple
 
 Executable xtee
-  Main-Is:       xtee.hs
+  Main-Is:       xtee/xtee.hs
   Build-Depends: base >= 4
   GHC-Options:   -Wall -pgmL lhs2TeX -optL--pre
 
 Executable map
-  Main-Is:       map.hs
+  Main-Is:       map/map.hs
   Build-Depends: base >= 4,
                  bytestring,
                  process
   GHC-Options:   -Wall -fno-warn-type-defaults
 
 Executable chop
-  Main-Is:       chop.hs
+  Main-Is:       chop/chop.hs
   Build-Depends: base >= 4,
                  parsec >= 3,
                  text
@@ -40,7 +40,7 @@ Executable chop
   GHC-Options:   -Wall -fno-warn-type-defaults
 
 Executable trans
-  Main-Is:       trans.hs
+  Main-Is:       trans/trans.hs
   Build-Depends: base >= 4,
                  bytestring,
                  stringsearch,
